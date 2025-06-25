@@ -104,8 +104,8 @@ struct MacOSVirtualMachineConfigurationHelper {
         // Create the shared directory
         let sharedDirectory = VZSharedDirectory(url: sharedFolderURL, readOnly: false)
 
-        // Create the sharing device configuration
-        let sharingDeviceConfiguration = VZVirtioFileSystemDeviceConfiguration(tag: "VMShared")
+        // Create the sharing device configuration with automount tag
+        let sharingDeviceConfiguration = VZVirtioFileSystemDeviceConfiguration(tag: VZVirtioFileSystemDeviceConfiguration.macOSGuestAutomountTag)
         sharingDeviceConfiguration.share = VZSingleDirectoryShare(directory: sharedDirectory)
 
         return sharingDeviceConfiguration
