@@ -1,5 +1,5 @@
 /*
-See the LICENSE.txt file for this sample’s licensing information.
+See the LICENSE.txt file for this sample's licensing information.
 
 Abstract:
 Constants that point to the various file URLs that the sample code uses.
@@ -22,3 +22,6 @@ let machineIdentifierURL = vmBundleURL.appendingPathComponent("MachineIdentifier
 let restoreImageURL = vmBundleURL.appendingPathComponent("RestoreImage.ipsw")
 
 let saveFileURL = vmBundleURL.appendingPathComponent("SaveFile.vzvmsave")
+
+// Shared folder URL for file sharing between host and VM
+let sharedFolderURL = URL(fileURLWithPath: NSHomeDirectory() + "/VMShared")

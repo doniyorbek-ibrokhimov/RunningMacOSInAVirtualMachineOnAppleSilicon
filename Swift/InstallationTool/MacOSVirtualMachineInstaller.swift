@@ -102,6 +102,7 @@ class MacOSVirtualMachineInstaller: NSObject {
 
         virtualMachineConfiguration.pointingDevices = [MacOSVirtualMachineConfigurationHelper.createPointingDeviceConfiguration()]
         virtualMachineConfiguration.keyboards = [MacOSVirtualMachineConfigurationHelper.createKeyboardConfiguration()]
+        virtualMachineConfiguration.directorySharingDevices = [MacOSVirtualMachineConfigurationHelper.createDirectorySharingDeviceConfiguration()]
 
         try! virtualMachineConfiguration.validate()
 

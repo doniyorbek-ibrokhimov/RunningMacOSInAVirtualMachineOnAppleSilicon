@@ -1,5 +1,5 @@
 /*
-See the LICENSE.txt file for this sample’s licensing information.
+See the LICENSE.txt file for this sample's licensing information.
 
 Abstract:
 The helper that creates various configuration objects exposed in the `VZVirtualMachineConfiguration`.
@@ -86,6 +86,29 @@ struct MacOSVirtualMachineConfigurationHelper {
         } else {
             return VZUSBKeyboardConfiguration()
         }
+    }
+
+    // MARK: Create shared directory configuration for file sharing
+    static func createDirectorySharingDeviceConfiguration() -> VZVirtioFileSystemDeviceConfiguration {
+        // Create the shared folder on the host if it doesn't exist
+        let fileManager = FileManager.default
+        if !fileManager.fileExists(atPath: sharedFolderURL.path) {
+            do {
+                try fileManager.createDirectory(at: sharedFolderURL, withIntermediateDirectories: true)
+                NSLog("Created shared folder at: \(sharedFolderURL.path)")
+            } catch {
+                fatalError("Failed to create shared folder: \(error)")
+            }
+        }
+
+        // Create the shared directory
+        let sharedDirectory = VZSharedDirectory(url: sharedFolderURL, readOnly: false)
+
+        // Create the sharing device configuration
+        let sharingDeviceConfiguration = VZVirtioFileSystemDeviceConfiguration(tag: "VMShared")
+        sharingDeviceConfiguration.share = VZSingleDirectoryShare(directory: sharedDirectory)
+
+        return sharingDeviceConfiguration
     }
 }
 
