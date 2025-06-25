@@ -50,6 +50,12 @@
             ReferencedContainer = "container:macOSVirtualMachineSampleApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "/Users/d.ibrokhimov/Downloads/macos15.ipsw"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
