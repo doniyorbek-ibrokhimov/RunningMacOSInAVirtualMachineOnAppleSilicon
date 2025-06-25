@@ -110,6 +110,20 @@ struct MacOSVirtualMachineConfigurationHelper {
 
         return sharingDeviceConfiguration
     }
+
+    // MARK: Create console device configuration for clipboard sharing
+    static func createConsoleDeviceConfiguration() -> VZVirtioConsoleDeviceConfiguration {
+        let consoleDevice = VZVirtioConsoleDeviceConfiguration()
+        
+        // Create a SPICE agent port for clipboard sharing
+        let spiceAgentPort = VZVirtioConsolePortConfiguration()
+        spiceAgentPort.name = VZSpiceAgentPortAttachment.spiceAgentPortName
+        spiceAgentPort.attachment = VZSpiceAgentPortAttachment()
+        
+        consoleDevice.ports[0] = spiceAgentPort
+        
+        return consoleDevice
+    }
 }
 
 #endif
